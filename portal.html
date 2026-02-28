@@ -105,7 +105,6 @@
             border-radius: 8px;
         }
 
-        /* Colores oficiales al pasar el cursor */
         .btn-ig:hover {
             border-color: #e4405f;
             color: #e4405f;
@@ -185,7 +184,6 @@
             text-transform: uppercase;
         }
 
-        /* ESTILOS AREA DE ADMINISTRACIÓN (BROADCAST) */
         .admin-card {
             background: #0a0e14;
             border: 1px solid #ff0055;
@@ -264,7 +262,7 @@
 <body>
 
     <div class="profile-header">
-        <img src="avatar_impulsa.png" class="p-img" alt="Foto de Perfil">
+        <img src="arte/avatar_logo.jpg" class="p-img" alt="Foto de Perfil">
         <span class="p-tag">@Mae Mae Maaee</span>
         <h1 class="p-name">Mae Mae Maaee</h1>
         <p style="color: #a0aab2; font-size: 0.9rem; margin-top: 10px;">Soluciones Profesionales & Presencia Digital</p>
@@ -277,15 +275,15 @@
     <div class="container">
         <h3>Presencia Digital</h3>
         <div class="social-mirror">
-            <a href="https://www.instagram.com/maemaemaaee/" class="post-box btn-ig">
+            <a href="https://www.instagram.com/maemaemaaee" target="_blank" class="post-box btn-ig">
                 <i class="fab fa-instagram"></i>
                 <span style="font-weight: 800; font-size: 0.55rem; letter-spacing: 1px;">INSTAGRAM</span>
             </a>
-            <a href="https://www.facebook.com/donnie.duarte.1" class="post-box btn-fb">
+            <a href="https://www.facebook.com/search/top/?q=Mae%20Mae%20Maaee" target="_blank" class="post-box btn-fb">
                 <i class="fab fa-facebook-f"></i>
                 <span style="font-weight: 800; font-size: 0.55rem; letter-spacing: 1px;">FACEBOOK</span>
             </a>
-            <a href="https://www.tiktok.com/@maemaemaaee" class="post-box btn-tk">
+            <a href="https://www.tiktok.com/@maemaemaaee" target="_blank" class="post-box btn-tk">
                 <i class="fab fa-tiktok"></i>
                 <span style="font-weight: 800; font-size: 0.55rem; letter-spacing: 1px;">TIKTOK</span>
             </a>
@@ -317,7 +315,6 @@
 
     <footer>INFRAESTRUCTURA POR Mae Mae Maaee ©️ 2026</footer>
 
-    <!-- SCRIPT BROADCAST -->
     <script>
         document.getElementById('send-broadcast-btn').addEventListener('click', async () => {
             const message = document.getElementById('broadcast-message').value;
@@ -331,7 +328,6 @@
             status.textContent = 'ENVIANDO MENSAJES...';
 
             try {
-                // Petición al Apps Script del Cliente
                 await fetch('https://script.google.com/macros/s/AKfycbz_Placeholder_MaeMaeMaaee/exec', {
                     method: 'POST',
                     mode: 'no-cors',
@@ -344,7 +340,6 @@
                     })
                 });
 
-                // Muestra éxito
                 setTimeout(() => {
                     status.textContent = '✓ MENSAJES ENVIADOS';
                 }, 1000);
@@ -356,7 +351,6 @@
                 status.style.color = '#ff0055';
             }
 
-            // Regresa al estado inicial
             setTimeout(() => {
                 status.style.display = 'none';
                 status.textContent = 'ENVIANDO MENSAJES...';
@@ -365,16 +359,13 @@
             }, 5000);
         });
 
-        // --- SCRIPT PARA CONTADOR DINÁMICO ---
         document.addEventListener('DOMContentLoaded', async () => {
             const countSpan = document.getElementById('count-number');
             try {
-                // Al hacer un GET a la URL de Apps Script, nos devolverá el total de filas
                 const response = await fetch('https://script.google.com/macros/s/AKfycbz_Placeholder_MaeMaeMaaee/exec');
                 const data = await response.json();
 
                 if (data && typeof data.count !== 'undefined') {
-                    // Actualiza visualmente el número
                     countSpan.textContent = data.count;
                 } else {
                     countSpan.textContent = '0';
@@ -385,8 +376,6 @@
             }
         });
 
-        // --- SCRIPT PARA MOSTRAR PANEL DE ADMIN ---
-        // Solo el dueño, ingresando con ?admin=true en la URL, podrá ver esta sección
         if (new URLSearchParams(window.location.search).get('admin') === 'true') {
             document.getElementById('admin-title').style.display = 'block';
             document.getElementById('admin-panel').style.display = 'block';
